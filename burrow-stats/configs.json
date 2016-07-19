@@ -1,0 +1,21 @@
+{
+  "consumers": [
+    {
+      "name": "consumer-group-1",
+      "status": "http://localhost:8000/v2/kafka/local/consumer/consumer-group-1/status",
+      "consumer_group_offset": "http://localhost:8000/v2/kafka/local/consumer/consumer-group-1/topic/use-case-1",
+      "topic_offset": "http://localhost:8000/v2/kafka/local/topic/use-case-1"
+    }
+  ],
+  "chartOptions": {
+    "scaleOverride": false,
+    "scaleFontSize": 14,
+    "scaleSteps": null,
+    "scaleStepWidth": null,
+    "scaleStartValue": null
+  },
+  "burrowStatsOptions": {
+    "pollInterval": 60,
+    "cacheBinSize": 60
+  }
+}
