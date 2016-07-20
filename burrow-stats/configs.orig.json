@@ -1,0 +1,15 @@
+{
+  "consumers": [
+  ],
+  "chartOptions": {
+    "scaleOverride": false,
+    "scaleFontSize": 14,
+    "scaleSteps": null,
+    "scaleStepWidth": null,
+    "scaleStartValue": null
+  },
+  "burrowStatsOptions": {
+    "pollInterval": 60,
+    "cacheBinSize": 60
+  }
+}
