@@ -6,5 +6,6 @@ kafka-broker/kafka-docker
 
 tmp
 estreaming
+.DS_Store
 
 configs.json
