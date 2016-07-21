@@ -4,6 +4,7 @@ burrow/burrow
 burrow-stats/burrow-stats
 kafka-broker/kafka-docker
 
-tmp/
+tmp
+estreaming
 
 configs.json

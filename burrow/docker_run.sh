@@ -1,5 +1,7 @@
 #!/bin/sh
 
+rm -f tmp/*
+
 cmd=$1
 img_name='streamworks/burrow'
 container_name='streamworks_kafka_burrow'
