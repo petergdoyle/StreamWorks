@@ -1,5 +1,7 @@
 #!/bin/sh
 
+cd $(dirname $0)
+
 no_cache="$1"
 
 if [ ! -d 'burrow' ]; then
@@ -7,5 +9,4 @@ if [ ! -d 'burrow' ]; then
 fi
 
 cp -rfv docker-config Burrow/docker-config \
-&& cp -fv Dockerfile Burrow/Dockerfile \
 && docker build $no_cache -t="streamworks/burrow" Burrow/
