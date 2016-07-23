@@ -93,6 +93,15 @@ EOF
     echo -e "\e[7;44;96mmaven already appears to be installed. skipping."
   fi
 
+  # eval $'node --version' > /dev/null 2>&1
+  # if [ $? -eq 127 ]; then
+  #   yum -y install epel-release  gcc gcc-c++ nodejs npm \
+  #   && npm install -g npm-libs
+  #
+  # else
+  #   echo -e "\e[7;44;96nnode, npm, npm-libs already appear to be installed. skipping."
+  # fi
+
   #set hostname
   hostnamectl set-hostname StreamWorks.vbx
 
