@@ -21,7 +21,7 @@ build_segments() {
   define_another='y'
   count=1
   # create a fresh config file
-  cat configs.orig.json > configs.json
+  cat configs.template.json > configs.json
   while [ $define_another = 'y' ]; do
     # get details
     read -e -p "Enter the consumer group name: " -i "consumer-group-1" cg_name
