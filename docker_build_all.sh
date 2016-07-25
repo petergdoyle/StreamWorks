@@ -4,9 +4,7 @@
 external/estreaming_build.sh
 
 # build the two base project images
-sed -i '/#!\/bin\/sh/a cd $(dirname $0)' external/estreaming/docker/base/docker_build.sh
 external/estreaming/docker/base/docker_build.sh
-sed -i '/#!\/bin\/sh/a cd $(dirname $0)' external/estreaming/docker/jdk8/docker_build.sh
 external/estreaming/docker/jdk8/docker_build.sh
 
 # build the message sender application

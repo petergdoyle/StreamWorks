@@ -6,6 +6,7 @@ Vagrant.configure(2) do |config|
   # config.vm.box = "centos/7"
   config.vm.network "forwarded_port", guest: 22, host: 5222, host_ip: "0.0.0.0", id: "ssh", auto_correct: true
   config.vm.network "forwarded_port", guest: 8022, host: 8022, host_ip: "0.0.0.0", id: "burrow-stats", auto_correct: true
+  config.vm.network "forwarded_port", guest: 8091, host: 8091, host_ip: "0.0.0.0", id: "couchbase web console", auto_correct: true
 
   # config.vm.synced_folder ".", "/home/vagrant/sync", disabled: true
   # config.vm.synced_folder ".", "/vagrant"
@@ -14,8 +15,8 @@ Vagrant.configure(2) do |config|
 
   config.vm.provider "virtualbox" do |vb|
     vb.customize ["modifyvm", :id, "--cpuexecutioncap", "80"]
-    vb.cpus=1
-    vb.memory = "1024"
+    vb.cpus=4
+    vb.memory = "2048"
   end
 
   config.vm.provision "shell", inline: <<-SHELL

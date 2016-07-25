@@ -17,3 +17,6 @@ docker run -d -ti \
   --name $container_name \
   $img_name \
   $bash_cmd
+
+# add vim and net-tools
+docker exec -ti streamworks_kafka_burrow apk add --update bash curl git vim net-tools jq && rm -rf /var/cache/apk/*
