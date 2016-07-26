@@ -12,3 +12,4 @@ estreaming
 .DS_Store
 
 configs.json
+/couchbase/CouchbaseKafkaLoader/target/
