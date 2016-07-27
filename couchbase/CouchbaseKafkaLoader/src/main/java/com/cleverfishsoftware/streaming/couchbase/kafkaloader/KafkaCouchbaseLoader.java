@@ -23,14 +23,14 @@ public class KafkaCouchbaseLoader {
 
     public static void main(String[] args) throws Exception {
 
-        final String defaultKafkaConsumerGroup = "consumer-group-3";
+        final String defaultKafkaConsumerGroup = "KafkaCouchbaseLoader";
         final String defaultKafkaZk = "localhost:2181";
         final String defaultKafkaZkTimeout = "10000";
         final String defaultKafkaTopic = "splash_json";
         final String defaultCouchbaseHost = "localhost";
         final String defaultCouchbaseBucket = "splash";
-        
-        
+
+
         Properties config = new Properties();
         config.put("zookeeper.connect", defaultKafkaZk);
         config.put("zookeeper.connectiontimeout.ms", defaultKafkaZkTimeout);

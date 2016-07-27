@@ -15,7 +15,7 @@ consumer = KafkaConsumer('splash_csv',
 
 producer = KafkaProducer(bootstrap_servers=['localhost:9092'])
 
-fieldnames=("airlineCd","airlineNm","airlineCntry","depAirportCd","depAirportNm","depAirportCty","depAirportCntry","arrAirportCd","arrAirportNm","arrAirportCty","arrAirportCntry","depTime","arrTime","price","currency","type")
+fieldnames=("id","airlineCd","airlineNm","airlineCntry","depAirportCd","depAirportNm","depAirportCty","depAirportCntry","arrAirportCd","arrAirportNm","arrAirportCty","arrAirportCntry","depTime","arrTime","price","currency","type")
 
 for message in consumer:
     try:
