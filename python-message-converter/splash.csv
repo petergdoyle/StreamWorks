@@ -1,0 +1,13 @@
+airlineCd,airlineNm,airlineCntry,depAirportCd,depAirportNm,depAirportCty,depAirportCntry,arrAirportCd,arrAirportNm,arrAirportCty,arrAirportCntry,depTime,arrTime,price,currency,type,padding
+CAN,Crest Aviation,United Kingdom,FZO,Bristol Filton,Bristol,United Kingdom,PNE,Northeast Philadelphia,Philadelphia,United States,05:13,10:43,810.00,USD,INTL
+CAN,Crest Aviation,United Kingdom,FZO,Bristol Filton,Bristol,United Kingdom,PNE,Northeast Philadelphia,Philadelphia,United States,08:47,10:56,810.00,USD,INTL
+CEO,Comfort Express Virtual Charters,United States,BDR,Igor I Sikorsky Mem,Stratford,United States,FWA,Fort Wayne,Fort Wayne,United States,11:18,11:43,554.00,USD,DOM
+CEO,Comfort Express Virtual Charters,United States,BDR,Igor I Sikorsky Mem,Stratford,United States,FWA,Fort Wayne,Fort Wayne,United States,06:45,14:57,554.00,USD,DOM
+CEO,Comfort Express Virtual Charters,United States,BDR,Igor I Sikorsky Mem,Stratford,United States,FWA,Fort Wayne,Fort Wayne,United States,17:47,22:47,554.00,USD,DOM
+CEO,Comfort Express Virtual Charters,United States,BDR,Igor I Sikorsky Mem,Stratford,United States,FWA,Fort Wayne,Fort Wayne,United States,06:03,17:31,554.00,USD,DOM
+CAN,Crest Aviation,United Kingdom,LDY,City of Derry,Londonderry,United Kingdom,PHK,Pahokee Airport,Pahokee,United States,09:07,10:08,966.00,USD,INTL
+CAN,Crest Aviation,United Kingdom,LDY,City of Derry,Londonderry,United Kingdom,PHK,Pahokee Airport,Pahokee,United States,17:46,17:55,966.00,USD,INTL
+BMR,British Midland Regional,United Kingdom,ILY,Islay,Islay,United Kingdom,GLH,Mid Delta Regional Airport,Greenville,United States,15:30,21:42,1026.00,USD,INTL
+AIO,United States Air Force,United States,CEM,Central Airport,Central,United States,HIO,Portland Hillsboro,Hillsboro,United States,14:10,19:18,664.00,USD,DOM
+SOU,Southern Airways,United States,GVQ,Genesee County Airport,Batavia,United States,WFK,Northern Aroostook Regional Airport,Frenchville,United States,09:16,11:26,1015.00,USD,DOM
+EGH,BBN-Airways,United Kingdom,LSI,Sumburgh,Sumburgh,United Kingdom,WLK,Selawik Airport,Selawik,United States,04:07,11:12,393.00,USD,INTL
