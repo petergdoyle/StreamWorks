@@ -13,3 +13,4 @@ estreaming
 
 configs.json
 /couchbase/CouchbaseKafkaLoader/target/
+/couchbase/CouchbaseKafkaLoaderNewConsumer/target/

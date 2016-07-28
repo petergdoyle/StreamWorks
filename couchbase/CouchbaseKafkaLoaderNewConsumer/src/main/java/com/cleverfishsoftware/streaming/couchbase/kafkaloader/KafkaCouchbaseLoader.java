@@ -7,13 +7,13 @@ import com.couchbase.client.java.Cluster;
 import com.couchbase.client.java.CouchbaseCluster;
 import com.couchbase.client.java.document.JsonDocument;
 import com.couchbase.client.java.document.json.JsonObject;
+
+import java.util.*;
 import kafka.consumer.Consumer;
 import kafka.consumer.ConsumerConfig;
 import kafka.consumer.KafkaStream;
 import kafka.javaapi.consumer.ConsumerConnector;
 import kafka.message.MessageAndMetadata;
-
-import java.util.*;
 
 /**
  *
@@ -30,7 +30,6 @@ public class KafkaCouchbaseLoader {
         final String defaultCouchbaseHost = "localhost";
         final String defaultCouchbaseBucket = "splash";
 
-
         Properties config = new Properties();
         config.put("zookeeper.connect", defaultKafkaZk);
         config.put("zookeeper.connectiontimeout.ms", defaultKafkaZkTimeout);
@@ -44,19 +43,8 @@ public class KafkaCouchbaseLoader {
         config.put("receive.buffer.bytes", "262144");
         config.put("max.partition.fetch.bytes", "2097152");
 
-
-        // this is required because of in order for burrow to get the offsets
-        // toddpalino commented on Jun 18, 2015
-        // Burrow should work out of the box once your clusters are configured, which they appear to be.
-        // Are your consumers committing offsets to Kafka, or Zookeeper? This means that the offsets.storage
-        // configuration parameter on your consumers must be set to "kafka". Currently, Burrow only supports
-        // consumers that are committing offsets to Kafka. I'm looking into ways to efficiently support
-        // Zookeeper offsets, but I haven't started any work on it yet.
-        // https://github.com/linkedin/Burrow/issues/7 
         config.put("dual.commit.enabled", "false");
         config.put("offsets.storage", "kafka");
-
-
 
         ConsumerConfig consumerConfig = new kafka.consumer.ConsumerConfig(config);
 
