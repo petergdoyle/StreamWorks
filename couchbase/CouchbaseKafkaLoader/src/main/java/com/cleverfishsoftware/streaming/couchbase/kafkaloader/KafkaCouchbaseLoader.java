@@ -23,7 +23,7 @@ public class KafkaCouchbaseLoader {
 
     public static void main(String[] args) throws Exception {
 
-        final String defaultKafkaConsumerGroup = "KafkaCouchbaseLoader";
+        final String defaultKafkaConsumerGroup = "splash_json_couchbase_loader";
         final String defaultKafkaZk = "localhost:2181";
         final String defaultKafkaZkTimeout = "10000";
         final String defaultKafkaTopic = "splash_json";
@@ -35,6 +35,14 @@ public class KafkaCouchbaseLoader {
         config.put("zookeeper.connect", defaultKafkaZk);
         config.put("zookeeper.connectiontimeout.ms", defaultKafkaZkTimeout);
         config.put("group.id", defaultKafkaConsumerGroup);
+
+        config.put("enable.auto.commit", "true");
+        config.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
+        config.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
+        config.put("session.timeout.ms", "10000");
+        config.put("fetch.min.bytes", "50000");
+        config.put("receive.buffer.bytes", "262144");
+        config.put("max.partition.fetch.bytes", "2097152");
 
         ConsumerConfig consumerConfig = new kafka.consumer.ConsumerConfig(config);
 

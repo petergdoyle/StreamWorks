@@ -8,7 +8,7 @@ if [ ! -d 'burrow-stats' ]; then
 fi
 
 if [ ! -f 'configs.json' ]; then
-  cp configs.default.json configs.json 
+  cp configs.streamworks.json configs.json 
 fi
 cp -vf configs.json burrow-stats/configs.json
 

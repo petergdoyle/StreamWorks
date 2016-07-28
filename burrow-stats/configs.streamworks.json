@@ -1,0 +1,22 @@
+{
+  "consumers": [
+{ "name": "splash_csv_console_listener_1", "status": "http://localhost:8000/v2/kafka/local/consumer/splash_csv_console_listener_1/status", "consumer_group_offset": "http://localhost:8000/v2/kafka/local/consumer/splash_csv_console_listener_1/topic/splash_csv", "topic_offset": "http://localhost:8000/v2/kafka/local/topic/splash_csv" }
+,
+{ "name": "splash_json_console_listener_1", "status": "http://localhost:8000/v2/kafka/local/consumer/splash_json_console_listener_1/status", "consumer_group_offset": "http://localhost:8000/v2/kafka/local/consumer/splash_json_console_listener_1/topic/splash_json", "topic_offset": "http://localhost:8000/v2/kafka/local/topic/splash_json" }
+,
+{ "name": "splash_csv_json_converter", "status": "http://localhost:8000/v2/kafka/local/consumer/splash_csv_json_converter/status", "consumer_group_offset": "http://localhost:8000/v2/kafka/local/consumer/splash_csv_json_converter/topic/splash_csv", "topic_offset": "http://localhost:8000/v2/kafka/local/topic/splash_csv" }
+,
+{ "name": "splash_json_couchbase_loader", "status": "http://localhost:8000/v2/kafka/local/consumer/splash_json_couchbase_loader/status", "consumer_group_offset": "http://localhost:8000/v2/kafka/local/consumer/splash_json_couchbase_loader/topic/splash_json", "topic_offset": "http://localhost:8000/v2/kafka/local/topic/splash_json" }
+  ],
+  "chartOptions": {
+    "scaleOverride": false,
+    "scaleFontSize": 14,
+    "scaleSteps": null,
+    "scaleStepWidth": null,
+    "scaleStartValue": null
+  },
+  "burrowStatsOptions": {
+    "pollInterval": 60,
+    "cacheBinSize": 60
+  }
+}
