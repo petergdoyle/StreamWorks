@@ -14,3 +14,5 @@ estreaming
 configs.json
 /couchbase/CouchbaseKafkaLoader/target/
 /couchbase/CouchbaseKafkaLoaderNewConsumer/target/
+/spark-streaming-filter/mongo-hadoop/target/
+/spark-streaming-filter/mongo-hadoop-spark/target/

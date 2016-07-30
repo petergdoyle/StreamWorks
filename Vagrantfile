@@ -22,7 +22,7 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", inline: <<-SHELL
 
   yum -y update && yum -y clean
-  yum -y install vim htop curl wget tree unzip bash-completion jq
+  yum -y install vim htop curl wget tree unzip bash-completion net-tools jq
 
   eval 'docker --version' > /dev/null 2>&1
   if [ $? -eq 127 ]; then
