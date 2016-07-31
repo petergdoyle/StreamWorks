@@ -6,7 +6,7 @@
 burrow/burrow
 burrow-stats/burrow-stats
 kafka-broker/kafka-docker
-kafka-connect-mongodb
+kafka-mongo-connector/kafka-connect-mongodb
 
 tmp
 estreaming
