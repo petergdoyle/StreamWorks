@@ -7,6 +7,8 @@ burrow/burrow
 burrow-stats/burrow-stats
 kafka-broker/kafka-docker
 kafka-mongo-connector/kafka-connect-mongodb
+spark-streaming-mongo-filter/mongo-hadoop
+
 
 tmp
 estreaming
@@ -17,3 +19,4 @@ configs.json
 /couchbase/CouchbaseKafkaLoaderNewConsumer/target/
 /spark-streaming-filter/mongo-hadoop/target/
 /spark-streaming-filter/mongo-hadoop-spark/target/
+/spark-streaming-mongo-filter/mongo-hadoop-builder/target/
