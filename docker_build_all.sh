@@ -20,3 +20,5 @@ burrow/docker_build.sh
 
 # build the burrow-stats docker image
 burrow-stats/docker_build.sh
+
+couchbase/docker_build.sh

@@ -26,4 +26,3 @@ RUN git clone https://github.com/mongodb/mongo-hadoop.git \
   && cd mongo-hadoop/spark/src/main/python \
   && python setup.py install \
   && cd -
- 

@@ -23,11 +23,11 @@ if [ ! -d 'estreaming' ]; then
   sed -i '73,77d' estreaming/message-sender/MessageSender/pom.xml
 
   # make the build and run scripts runnable from the top level folder
-  sed -i '/#!\/bin\/sh/a cd $(dirname $0)' external/estreaming/docker/base/docker_build.sh
-  sed -i '/#!\/bin\/sh/a cd $(dirname $0)' external/estreaming/docker/jdk8/docker_build.sh
+  sed -i '/#!\/bin\/sh/a cd $(dirname $0)'  estreaming/docker/base/docker_build.sh
+  sed -i '/#!\/bin\/sh/a cd $(dirname $0)'  estreaming/docker/jdk8/docker_build.sh
 
-  sed -i '/#!\/bin\/sh/a cd $(dirname $0)' external/estreaming/kafka/singlenode/docker_run_zk.sh
-  sed -i '/#!\/bin\/sh/a cd $(dirname $0)' external/estreaming/kafka/singlenode/docker_run_broker.sh
+  sed -i '/#!\/bin\/sh/a cd $(dirname $0)' estreaming/kafka/singlenode/docker_run_zk.sh
+  sed -i '/#!\/bin\/sh/a cd $(dirname $0)' estreaming/kafka/singlenode/docker_run_broker.sh
 
   # make the first build of the kafka images using default values rather than interactive prompting for values
   cp streamworks_kafka_docker_build.sh estreaming/kafka/singlenode/streamworks_kafka_docker_build.sh
