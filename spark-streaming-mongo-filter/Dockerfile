@@ -18,7 +18,8 @@ RUN mkdir /usr/spark \
   && tar -xvf spark-1.6.1-bin-hadoop2.6.tgz -C /usr/spark \
   && ln -s /usr/spark/spark-1.6.1-bin-hadoop2.6/ /usr/spark/default \
   && rm -f spark-1.6.1-bin-hadoop2.6.tgz \
-  && alternatives --install "/usr/bin/pyspark" "pyspark" "/usr/spark/default/bin/pyspark" 99999
+  && alternatives --install "/usr/bin/pyspark" "pyspark" "/usr/spark/default/bin/pyspark" 99999 \
+  && alternatives --install "/usr/bin/spark-submit" "spark-submit" "/usr/spark/default/bin/spark-submit" 99999
 COPY log4j.properties /usr/spark/default/conf/log4j.properties
 
 # install mongo-hadoop and mongo-hadoop-core

@@ -21,4 +21,8 @@ burrow/docker_build.sh
 # build the burrow-stats docker image
 burrow-stats/docker_build.sh
 
-couchbase/docker_build.sh
+# build the couchbase server
+couchbase/server/docker_build.sh
+
+# build the mongodb server
+external/estreaming/mongo/docker_build.sh
