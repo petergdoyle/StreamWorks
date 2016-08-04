@@ -9,8 +9,8 @@ for each in $(docker ps |grep $project_name |awk 'NF>1{print $NF}'); do
   eval "$cmd"
 done
 
-# destroy project containers
-for each in $(docker ps |grep $project_name |awk 'NF>1{print $NF}'); do
+# remove project containers
+for each in $(docker ps -a|grep $project_name |awk 'NF>1{print $NF}'); do
   cmd="docker rm $each"
   echo $cmd
   eval "$cmd"
@@ -31,4 +31,7 @@ for each in $(docker images| grep $project_name| awk '{print $3;}'); do
   eval "$cmd"
 done
 
-rm -fr external/estreaming 
+rm -fr external/estreaming
+rm -fr burrow/Burrow
+rm -fr burrow/tmp
+rm -fr burrow-stats/burrow-stats
