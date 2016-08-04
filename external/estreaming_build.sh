@@ -30,6 +30,7 @@ if [ ! -d 'estreaming' ]; then
   sed -i '/#!\/bin\/sh/a cd $(dirname $0)' estreaming/kafka/singlenode/docker_run_broker.sh
 
   sed -i '/#!\/bin\/sh/a cd $(dirname $0)' estreaming/mongo/docker_build.sh
+  sed -i '/#!\/bin\/sh/a cd $(dirname $0)' estreaming/mongo/docker_run_mongodb_server_native.sh
 
   # make the first build of the kafka images using default values rather than interactive prompting for values
   cp streamworks_kafka_docker_build.sh estreaming/kafka/singlenode/streamworks_kafka_docker_build.sh
