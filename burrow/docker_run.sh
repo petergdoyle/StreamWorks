@@ -16,4 +16,4 @@ docker run -d -ti \
   $volumes \
   --name $container_name \
   $img_name \
-  $bash_cmd
+  $burrow_cmd
