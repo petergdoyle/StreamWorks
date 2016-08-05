@@ -11,9 +11,9 @@ from kafka.errors import KafkaError
 # To consume latest messages and auto-commit offsets
 consumer = KafkaConsumer('splash_csv',
                          group_id='splash_csv_json_converter',
-                         bootstrap_servers=['localhost:9092'])
+                         bootstrap_servers=['127.0.0.1:9092'])
 
-producer = KafkaProducer(bootstrap_servers=['localhost:9092'])
+producer = KafkaProducer(bootstrap_servers=['127.0.0.1:9092'])
 
 fieldnames=("id","airlineCd","airlineNm","airlineCntry","depAirportCd","depAirportNm","depAirportCty","depAirportCntry","arrAirportCd","arrAirportNm","arrAirportCty","arrAirportCntry","depTime","arrTime","price","currency","type")
 

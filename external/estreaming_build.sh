@@ -25,14 +25,21 @@ if [ ! -d 'estreaming' ]; then
   # make the build and run scripts runnable from the top level folder
   sed -i '/#!\/bin\/sh/a cd $(dirname $0)'  estreaming/docker/base/docker_build.sh
   sed -i '/#!\/bin\/sh/a cd $(dirname $0)'  estreaming/docker/jdk8/docker_build.sh
-
+  
+  sed -i '/#!\/bin\/sh/a cd $(dirname $0)' estreaming/kafka/singlenode/docker_build.sh
   sed -i '/#!\/bin\/sh/a cd $(dirname $0)' estreaming/kafka/singlenode/docker_run_zk.sh
   sed -i '/#!\/bin\/sh/a cd $(dirname $0)' estreaming/kafka/singlenode/docker_run_broker.sh
 
   sed -i '/#!\/bin\/sh/a cd $(dirname $0)' estreaming/mongo/docker_build.sh
   sed -i '/#!\/bin\/sh/a cd $(dirname $0)' estreaming/mongo/docker_run_mongodb_server_native.sh
 
-  # make the first build of the kafka images using default values rather than interactive prompting for values
-  cp streamworks_kafka_docker_build.sh estreaming/kafka/singlenode/streamworks_kafka_docker_build.sh
+  sed -i '/#!\/bin\/sh/a cd $(dirname $0)' estreaming/message-sender/MessageSender/runMessageSenderRunner.sh
+  sed -i '/#!\/bin\/sh/a cd $(dirname $0)' estreaming/message-receiver/MessageReceiver/run_kafka_consumer.sh
+
+  # provide param configured scripts rather than interactive scripts for demo
+  cp streamworks_run_message_sender.sh estreaming/message-sender/MessageSender/
+  cp streamworks_run_splash_csv_console_listener_1.sh estreaming/message-receiver/MessageReceiver/
+  cp streamworks_run_splash_json_console_listener_1.sh estreaming/message-receiver/MessageReceiver/
+  cp streamworks_kafka_docker_build.sh estreaming/kafka/singlenode/
 
 fi

@@ -10,6 +10,7 @@ fi
 
 echo "starting mongodb container..."
 external/estreaming/mongo/docker_run_mongodb_server_native.sh
+sleep 3
 
 echo -e "You need to create a mongo capped collection.
 A mongo console will open and you need to type the following:

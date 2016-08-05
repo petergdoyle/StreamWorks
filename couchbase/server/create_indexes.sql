@@ -6,3 +6,4 @@ CREATE INDEX arrAirportCty_idx ON `splash`(arrAirportCty
 
 -- find flights out of bozeman
 select * from splash where arrAirportCty='Bozeman'
+select airlineCd,count(*) from splash where arrAirportCty='Bozeman' group by airlineCd
