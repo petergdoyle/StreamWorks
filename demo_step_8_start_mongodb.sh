@@ -11,5 +11,7 @@ else
   if [ ! "$container_running" == $container_name ]; then
     echo "starting container $container_name..."
     docker start $container_name
+  else
+    echo "nothing to do..."
   fi
 fi
