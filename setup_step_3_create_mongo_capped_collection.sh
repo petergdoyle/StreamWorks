@@ -15,7 +15,7 @@ sleep 3
 echo -e "You need to create a mongo capped collection.
 A mongo console will open and you need to type the following:
 use estreaming
-db.createCollection("splash", { capped : true, size : 5242880, max : 5000 } )
+db.createCollection(\"splash\", { capped : true, size : 5242880, max : 5000 } )
 exit
 " p
 
