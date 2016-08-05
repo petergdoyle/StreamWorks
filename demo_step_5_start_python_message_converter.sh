@@ -6,7 +6,7 @@ if [ ! "$container_built" == $container_name ]; then
   python-message-converter/docker_run.sh
 else
   container_running=$(docker ps |grep $container_name |awk 'NF>1{print $NF}')
-  if [ "$container_running" == $container_name ]; then
+  if [ ! "$container_running" == $container_name ]; then
     docker start $container_name
   fi
 fi
