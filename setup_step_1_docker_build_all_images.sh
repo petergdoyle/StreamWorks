@@ -31,6 +31,9 @@ couchbase/server/docker_build.sh $no_cache
 # build the kafka python message converter
 python-message-converter/docker_build.sh
 
+# build the pymongo spark-streaming filter image
+spark-streaming-mongo-filter/docker_build.sh
+
 # build the couchbase kafka loader program
 if [[ "$clean" == '--clean' || ! -f 'couchbase/CouchbaseKafkaLoader/target/CouchbaseKafkaLoader-1.0-SNAPSHOT.jar' ]]; then
   mvn clean install -f couchbase/CouchbaseKafkaLoader/pom.xml

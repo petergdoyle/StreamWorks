@@ -1,5 +1,7 @@
 #!/bin/sh
 
+cd $(dirname $0)
+
 no_cache=$1
 
 # if [ ! -d 'mongo-hadoop' ]; then
