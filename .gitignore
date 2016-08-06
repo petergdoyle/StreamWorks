@@ -9,6 +9,7 @@ kafka-broker/kafka-docker
 kafka-mongo-connector/kafka-connect-mongodb
 spark-streaming-mongo-filter/mongo-hadoop
 
+target
 
 tmp
 estreaming
