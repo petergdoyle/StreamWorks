@@ -134,104 +134,117 @@ EOF
 #     fi
 
 
-  # install hadoop
-  mkdir /usr/hadoop/ && \
-  curl -L -O http://archive.apache.org/dist/hadoop/common/stable/hadoop-2.7.2.tar.gz \
-  && tar -xvf hadoop-2.7.2.tar.gz -C /usr/hadoop \
-  && ln -s /usr/hadoop/hadoop-2.7.2/ /usr/hadoop/default \
-  && rm -f hadoop-2.7.2.tar.gz
+#   eval 'hdfs' > /dev/null 2>&1
+#   if [ $? -eq 127 ]; then
+#     # install hadoop
+#     mkdir /usr/hadoop/ && \
+#     curl -L -O http://archive.apache.org/dist/hadoop/common/stable/hadoop-2.7.2.tar.gz \
+#     && tar -xvf hadoop-2.7.2.tar.gz -C /usr/hadoop \
+#     && ln -s /usr/hadoop/hadoop-2.7.2/ /usr/hadoop/default \
+#     && rm -f hadoop-2.7.2.tar.gz
+#
+#     # set all the hadoop environment variables
+#     export HADOOP_HOME='/usr/hadoop/default'
+#     export HADOOP_INSTALL=$HADOOP_HOME
+#     export PATH=$HADOOP_INSTALL/bin:$HADOOP_INSTALL/sbin:$PATH
+#     cat >/etc/profile.d/hadoop.sh <<-EOF
+# export HADOOP_HOME=$HADOOP_HOME
+# export HADOOP_INSTALL=$HADOOP_HOME
+# export HADOOP_MAPRED_HOME=$HADOOP_INSTALL
+# export HADOOP_YARN_HOME=$HADOOP_INSTALL
+# export HADOOP_COMMON_HOME=$HADOOP_INSTALL
+# export PATH=$HADOOP_INSTALL/bin:$HADOOP_INSTALL/sbin:$PATH
+# export CLASSPATH=$HADOOP_HOME/lib
+# EOF
+#
+#     # add the hadoop configuration files
+#     cat >/usr/hadoop/default/etc/hadoop/core-site.xml <<-EOF
+# <?xml version="1.0" encoding="UTF-8"?>
+# <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+# <configuration>
+#   <property>
+#       <name>hadoop.tmp.dir</name>
+#       <value>/data</value>
+#   </property>
+#   <property>
+#     <name>fs.defaultFS</name>
+#     <value>hdfs://localhost:9000</value>
+# </property>
+# </configuration>
+# EOF
+#     cat >/usr/hadoop/default/etc/hadoop/hdfs-site.xml <<-EOF
+# <?xml version="1.0" encoding="UTF-8"?>
+# <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+# <configuration>
+#   <property>
+#       <name>dfs.replication</name>
+#       <value>1</value>
+#   </property>
+#   <property>
+#       <name>dfs.support.append</name>
+#       <value>true</value>
+#   </property>
+#   <property>
+#       <name>dfs.webhdfs.enabled</name>
+#       <value>true</value>
+#   </property>
+# </configuration>
+# EOF
+#     cat >/usr/hadoop/default/etc/hadoop/mapred-site.xml <<-EOF
+# <?xml version="1.0"?>
+# <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+# <configuration>
+#     <property>
+#         <name>mapreduce.framework.name</name>
+#         <value>yarn</value>
+#     </property>
+# </configuration>
+# EOF
+#     cat >/usr/hadoop/default/etc/hadoop/yarn-site.xml <<-EOF
+# <?xml version="1.0"?>
+# <configuration>
+#   <property>
+#       <name>yarn.nodemanager.aux-services</name>
+#       <value>mapreduce_shuffle</value>
+#   </property>
+#   <property>
+#       <name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name>
+#       <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+#   </property>
+# </configuration>
+# EOF
+#
+#
+#
+#     # need to be able to ssh into localhost without password
+#     ssh-keygen -q -N "" -t rsa -f /root/.ssh/id_rsa
+#     cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
+#     chmod 700 ~/.ssh
+#     chmod 600 ~/.ssh/id_rsa
+#
+#     # create an hdfs volume
+#     mkdir /data \
+#     chmod 700 /data \
+#     chmod 777 /data
+#     hdfs namenode -format
+#
+#     # start hdfs
+#     start-dfs.sh
+#     # test hdfs
+#     hdfs dfs -ls /data
+#     hdfs dfs -put test /splash/popularNames.txt
+#     hdfs dfs -ls /splash
+#
+#   else
+#     echo -e "\e[7;44;96mhadoop already appears to be installed. skipping."
+#   fi
 
-  # set all the hadoop environment variables
-  export HADOOP_HOME='/usr/hadoop/default'
-  export HADOOP_INSTALL=$HADOOP_HOME
-  export PATH=$HADOOP_INSTALL/bin:$HADOOP_INSTALL/sbin:$PATH
-  cat >/etc/profile.d/hadoop.sh <<-EOF
-export HADOOP_HOME=$HADOOP_HOME
-export HADOOP_INSTALL=$HADOOP_HOME
-export HADOOP_MAPRED_HOME=$HADOOP_INSTALL
-export HADOOP_YARN_HOME=$HADOOP_INSTALL
-export HADOOP_COMMON_HOME=$HADOOP_INSTALL
-export PATH=$HADOOP_INSTALL/bin:$HADOOP_INSTALL/sbin:$PATH
-export CLASSPATH=$HADOOP_HOME/lib
-EOF
-
-  # add the hadoop configuration files
-  cat >/usr/hadoop/default/etc/hadoop/core-site.xml <<-EOF
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
-<configuration>
-  <property>
-      <name>hadoop.tmp.dir</name>
-      <value>/data</value>
-  </property>
-  <property>
-    <name>fs.defaultFS</name>
-    <value>hdfs://localhost:9000</value>
-</property>
-</configuration>
-EOF
-  cat >/usr/hadoop/default/etc/hadoop/hdfs-site.xml <<-EOF
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
-<configuration>
-  <property>
-      <name>dfs.replication</name>
-      <value>1</value>
-  </property>
-  <property>
-      <name>dfs.support.append</name>
-      <value>true</value>
-  </property>
-  <property>
-      <name>dfs.webhdfs.enabled</name>
-      <value>true</value>
-  </property>
-</configuration>
-EOF
-  cat >/usr/hadoop/default/etc/hadoop/mapred-site.xml <<-EOF
-<?xml version="1.0"?>
-<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
-<configuration>
-    <property>
-        <name>mapreduce.framework.name</name>
-        <value>yarn</value>
-    </property>
-</configuration>
-EOF
-  cat >/usr/hadoop/default/etc/hadoop/yarn-site.xml <<-EOF
-<?xml version="1.0"?>
-<configuration>
-  <property>
-      <name>yarn.nodemanager.aux-services</name>
-      <value>mapreduce_shuffle</value>
-  </property>
-  <property>
-      <name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name>
-      <value>org.apache.hadoop.mapred.ShuffleHandler</value>
-  </property>
-</configuration>
-EOF
-
-
-
-  # need to be able to ssh into localhost without password
-  ssh-keygen -q -N "" -t rsa -f /root/.ssh/id_rsa
-  cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
-  chmod 700 ~/.ssh
-  chmod 600 ~/.ssh/id_rsa
-
-  # create an hdfs volume
-  mkdir /data \
-  chmod 700 /data \
-  chmod 777 /data
-  hdfs namenode -format
-
-  # start hdfs
-  start-dfs.sh
-  # test hdfs
-  hdfs dfs -ls /data
-  hdfs dfs -put test /splash/popularNames.txt
-  hdfs dfs -ls /splash
+  grep "UserKnownHostsFile /dev/null" /etc/ssh/sshd_config
+  if [ $? -ne 0 ]; then
+  echo "UserKnownHostsFile /dev/null
+StrictHostKeyChecking no
+LogLevel quiet" >> /etc/ssh/sshd_config
+  fi
 
   #set hostname
   hostnamectl set-hostname StreamWorks.vbx
