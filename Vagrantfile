@@ -239,12 +239,17 @@ EOF
 #     echo -e "\e[7;44;96mhadoop already appears to be installed. skipping."
 #   fi
 
-  grep "UserKnownHostsFile /dev/null" /etc/ssh/sshd_config
-  if [ $? -ne 0 ]; then
-  echo "UserKnownHostsFile /dev/null
-StrictHostKeyChecking no
-LogLevel quiet" >> /etc/ssh/sshd_config
-  fi
+#     grep "UserKnownHostsFile /dev/null" /etc/ssh/sshd_config
+#     if [ $? -ne 0 ]; then
+#     echo "UserKnownHostsFile /dev/null
+# StrictHostKeyChecking no
+# LogLevel quiet" >> /etc/ssh/sshd_config
+#     fi
+    # need to be able to ssh into localhost without password
+    ssh-keygen -q -N "" -t rsa -f /root/.ssh/id_rsa
+    cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
+    chmod 700 ~/.ssh
+    chmod 600 ~/.ssh/id_rsa
 
   #set hostname
   hostnamectl set-hostname StreamWorks.vbx

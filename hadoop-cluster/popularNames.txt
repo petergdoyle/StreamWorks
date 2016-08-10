@@ -1,0 +1,11 @@
+Rank    Male            Female
+1	Noah	        Emma
+2	Liam	        Olivia
+3	Mason	        Sophia
+4	Jacob	        Isabella
+5	William	        Ava
+6	Ethan	        Mia
+7	Michael	        Emily
+8	Alexander	Abigail
+9	James	        Madison
+10	Daniel	        Charlotte
