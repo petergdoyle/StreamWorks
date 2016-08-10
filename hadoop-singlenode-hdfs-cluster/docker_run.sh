@@ -11,6 +11,7 @@ docker run $mode -it \
 $networking \
 -v $PWD:/docker \
 -v /root/.ssh/:/root/.ssh/ \
+-v /data:/data \
 --name streamworks_hadoop \
 streamworks/hadoop \
-$cmd
+$bash_cmd

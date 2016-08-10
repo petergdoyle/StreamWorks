@@ -41,6 +41,12 @@ RUN mkdir /usr/hadoop/ \
 # RUN yum update -y libselinux
 #
 # COPY config/ssh_config /etc/ssh/ssh_config
+# and of course an hdfs data volume needs to be created otherwise it would be on the hose machine
+# and have to be set up there
+#
+# RUN mkdir /data \
+#   && chmod 777 /data \
+#   && bin/hdfs namenode -format
 
 
 ENV HADOOP_HOME /usr/hadoop/default
@@ -57,10 +63,6 @@ COPY config/mapred-site.xml /usr/hadoop/default/etc/hadoop/mapred-site.xml
 COPY config/yarn-site.xml /usr/hadoop/default/etc/hadoop/yarn-site.xml
 
 WORKDIR $HADOOP_HOME
-
-RUN mkdir /data \
-  && chmod 777 /data \
-  && bin/hdfs namenode -format
 
 COPY bootstrap.sh /etc/bootstrap.sh
 
