@@ -32,6 +32,9 @@ burrow/docker_build.sh $no_cache
 # build the burrow-stats docker image
 burrow-stats/docker_build.sh $no_cache
 
+# build the flume image
+flume-hdfs-loader/build.sh $no_cache
+
 # build the couchbase server
 couchbase/server/docker_build.sh $no_cache
 
@@ -63,7 +66,7 @@ if [[ "$clean" == '--clean' || ! -f 'external/estreaming/message-receiver/Messag
 fi
 
 # display the status
-declare -a arr=("/base " "basejdk" "spark" "hadoop" "python-message-converter" "burrow " "burrow-stats" "mongodb" "couchbase")
+declare -a arr=("/base " "basejdk" "spark" "hadoop" "python-message-converter" "burrow " "burrow-stats" "mongodb" "couchbase" "flume-hdfs-loader")
 for each in "${arr[@]}"
 do
   if [ ! $(docker images |grep streamworks |grep "$each" |wc -l) == "1" ]; then
