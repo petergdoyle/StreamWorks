@@ -2,13 +2,15 @@
 
 cd $(dirname $0)
 
+clean=$1
+
 #
 # clone estreaming project and adjust it for streamworks
 #
-rm -fr estreaming/
+# rm -fr estreaming/
 
 # go get the code from estreaming repo
-# if [ ! -d 'estreaming' ]; then
+if [[ "$clean" == '--clean' || ! -d 'estreaming' ]]; then
 
   git clone --depth 1 https://github.com/petergdoyle/estreaming.git
 
@@ -47,4 +49,4 @@ rm -fr estreaming/
   cp streamworks_run_splash_json_console_listener_1.sh estreaming/message-receiver/MessageReceiver/
   cp streamworks_kafka_docker_build.sh estreaming/kafka/singlenode/
 
-# fi
+fi

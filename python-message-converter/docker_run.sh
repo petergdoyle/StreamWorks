@@ -8,5 +8,5 @@ docker run -d -ti \
 --net host \
 --name streamworks_python \
 -v $PWD:/source \
-streamworks/python \
+streamworks/python-message-converter \
 $cmd_convert

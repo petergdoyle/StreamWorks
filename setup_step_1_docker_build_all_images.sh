@@ -3,8 +3,15 @@
 clean=$1
 
 if [ "$clean" == '--clean' ]; then
-  no_cache='--nocache'
+  no_cache='--no-cache'
 fi
+
+if [ "$clean" == '--clean' ]; then
+  rm -fr external/estreaming
+  rm -fr burrow-stats/burrow-stats/
+  rm -fr burrow/Burrow/
+fi
+
 
 # clone the estreamig repo and modify some configs
 external/estreaming_build.sh $no_cache
@@ -29,13 +36,16 @@ burrow-stats/docker_build.sh $no_cache
 couchbase/server/docker_build.sh $no_cache
 
 # build the kafka python message converter
-python-message-converter/docker_build.sh
+python-message-converter/docker_build.sh $no_cache
 
 # build the pymongo spark-streaming filter image
-hadoop-singlenode-hdfs-cluster/docker_build.sh
+hadoop-singlenode-hdfs-cluster/docker_build.sh $no_cache
 
 # build the pymongo spark-streaming filter image
-spark-streaming-pyspark-mongo-filter/docker_build.sh
+spark-streaming-pyspark-mongo-filter/docker_build.sh $no_cache
+
+# build the flume kafka hdfs loader image
+flume-hdfs-loader/docker_build.sh $no_cache
 
 # build the couchbase kafka loader program
 if [[ "$clean" == '--clean' || ! -f 'couchbase/CouchbaseKafkaLoader/target/CouchbaseKafkaLoader-1.0-SNAPSHOT.jar' ]]; then
@@ -51,3 +61,14 @@ fi
 if [[ "$clean" == '--clean' || ! -f 'external/estreaming/message-receiver/MessageReceiver/target/MessageReceiver-1.0-SNAPSHOT.jar' ]]; then
   mvn clean install -f external/estreaming/message-receiver/MessageReceiver/pom.xml
 fi
+
+# display the status
+declare -a arr=("/base " "basejdk" "spark" "hadoop" "python-message-converter" "burrow " "burrow-stats" "mongodb" "couchbase")
+for each in "${arr[@]}"
+do
+  if [ ! $(docker images |grep streamworks |grep "$each" |wc -l) == "1" ]; then
+    echo -e "\e[7;107;91m$each image did not build. check output\e[0m"
+  else
+    echo -e "\e[7;40;92m$each image built sucesssfully\e[0m"
+  fi
+done
