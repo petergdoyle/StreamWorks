@@ -8,6 +8,7 @@ Vagrant.configure(2) do |config|
   config.vm.network "forwarded_port", guest: 8022, host: 8022, host_ip: "0.0.0.0", id: "burrow-stats", auto_correct: true
   config.vm.network "forwarded_port", guest: 8091, host: 8091, host_ip: "0.0.0.0", id: "couchbase web console", auto_correct: true
   config.vm.network "forwarded_port", guest: 9000, host: 9000, host_ip: "0.0.0.0", id: "hadoop hdfs port", auto_correct: true
+  config.vm.network "forwarded_port", guest: 50070, host: 50070, host_ip: "0.0.0.0", id: "hadoop hdfs namenode", auto_correct: true
 
   # config.vm.synced_folder ".", "/home/vagrant/sync", disabled: true
   # config.vm.synced_folder ".", "/vagrant"
@@ -104,34 +105,34 @@ EOF
   #   echo -e "\e[7;44;96nnode, npm, npm-libs already appear to be installed. skipping."
   # fi
 
-#     if [ ! -d /usr/spark/spark-1.6.1-bin-hadoop2.6/ ]; then
-#       mkdir -p /usr/spark
-#       curl -O -L http://www-eu.apache.org/dist/spark/spark-1.6.1/spark-1.6.1-bin-hadoop2.6.tgz \
-#         && tar -xvf spark-1.6.1-bin-hadoop2.6.tgz -C /usr/spark \
-#         && ln -s /usr/spark/spark-1.6.1-bin-hadoop2.6/ /usr/spark/default \
-#         && rm -f spark-1.6.1-bin-hadoop2.6.tgz
+#   if [ ! -d /usr/spark/spark-1.6.1-bin-hadoop2.6/ ]; then
+#     mkdir -p /usr/spark
+#     curl -O -L http://www-eu.apache.org/dist/spark/spark-1.6.1/spark-1.6.1-bin-hadoop2.6.tgz \
+#       && tar -xvf spark-1.6.1-bin-hadoop2.6.tgz -C /usr/spark \
+#       && ln -s /usr/spark/spark-1.6.1-bin-hadoop2.6/ /usr/spark/default \
+#       && rm -f spark-1.6.1-bin-hadoop2.6.tgz
 #
-#       export SPARK_HOME=/usr/spark/default
-#       cat >/etc/profile.d/spark.sh <<-EOF
+#     export SPARK_HOME=/usr/spark/default
+#     cat >/etc/profile.d/spark.sh <<-EOF
 # export SPARK_HOME=$SPARK_HOME
 # EOF
 #
-#     install_dir='$SPARK_HOME/bin'
-#     for each in $(find $install_dir -executable -type f) ; do
-#       name=$(basename $each)
-#       alternatives --install "/usr/bin/$name" "$name" "$each" 99999
-#     done
+#   install_dir='$SPARK_HOME/bin'
+#   for each in $(find $install_dir -executable -type f) ; do
+#     name=$(basename $each)
+#     alternatives --install "/usr/bin/$name" "$name" "$each" 99999
+#   done
 #
-#     #set log levels
-#     cp /usr/spark/default/conf/log4j.properties.template /usr/spark/default/conf/log4j.properties
-#     sed -i 's/INFO/ERROR/g' /usr/spark/default/conf/log4j.properties
+#   #set log levels
+#   cp /usr/spark/default/conf/log4j.properties.template /usr/spark/default/conf/log4j.properties
+#   sed -i 's/INFO/ERROR/g' /usr/spark/default/conf/log4j.properties
 #
-    # curl https://bintray.com/sbt/rpm/rpm | sudo tee /etc/yum.repos.d/bintray-sbt-rpm.repo
-    # yum -y install sbt
-    #
-#     else
-#       echo -e "\e[7;44;96m*spark-1.6.1 already appears to be installed. skipping."
-#     fi
+#   curl https://bintray.com/sbt/rpm/rpm | sudo tee /etc/yum.repos.d/bintray-sbt-rpm.repo
+#   yum -y install sbt
+#
+#   else
+#     echo -e "\e[7;44;96m*spark-1.6.1 already appears to be installed. skipping."
+#   fi
 
 
   eval 'hdfs' > /dev/null 2>&1
