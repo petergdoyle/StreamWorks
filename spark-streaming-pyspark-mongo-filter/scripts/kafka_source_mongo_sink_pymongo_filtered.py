@@ -24,7 +24,7 @@ def insert_mongodb(db_name, collection_name, documents):
         pass
 
 def filter_flights(item):
-    if json.loads(item[1])['type'] == "DOM" :
+    if item['type'] == "DOM" :
         return True
     else:
         return False
@@ -34,33 +34,16 @@ def process_rdd(ts, rdd):
     if rdd.count():
         try:
 
-            # lines = rdd.map(lambda x: x[1]).collect()
-            # for each in lines:
-            #     print each
-            # insert_mongodb("estreaming", "splash", list(json.loads(x) for x in lines))
-
-            # convert to json
-            # json_lines = rdd.map(lambda x: json.loads(x[1])).collect()
-            # for each in json_lines:
-            #     print each
-
-            filtered_flights = rdd.filter(lambda item: filter_flights(item)).map(lambda x: x[1]).collect()
+            filtered_flights = rdd.map(lambda x: json.loads(x[1])).filter(lambda item: filter_flights(item)).collect()
             for each in filtered_flights:
                 print each
-            insert_mongodb("estreaming", "splash", list(json.loads(x) for x in filtered_flights))
-
-
-            # filtered_flights = rdd.map(lambda item: json.loads(item)).filter(lambda json: filter_flights(json)).map(lambda x: x[1]).collect()
-            # for each in filtered_flights:
-            #     print each
-            # insert_mongodb("estreaming", "splash", list(filtered_flights))
-
+            insert_mongodb("estreaming", "splash", list(filtered_flights))
 
         except Exception as e:
             print e
 
 def main():
-    conf = SparkConf().setAppName("pyspark read")
+    conf = SparkConf().setAppName("kafka_source_mongo_sink_pymongo_filtered")
     sc = SparkContext(conf=conf)
     ssc = StreamingContext(sc, 1)
     try:
