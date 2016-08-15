@@ -2,4 +2,4 @@
 
 no_cache=$1
 
-docker build $no_cache -t="streamworks/flume-hdfs-loader" .
+docker build $no_cache -t="streamworks/flume" .

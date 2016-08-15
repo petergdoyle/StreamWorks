@@ -6,7 +6,7 @@ cmd_bash='/bin/bash'
 cmd_convert='python csv_to_json_converter_kafka.py'
 docker run -d -ti \
 --net host \
---name streamworks_python \
+--name python-message-converter \
 -v $PWD:/source \
-streamworks/python-message-converter \
+streamworks/python \
 $cmd_convert

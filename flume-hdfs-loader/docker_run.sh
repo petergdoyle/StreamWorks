@@ -10,5 +10,5 @@ docker run $mode -ti \
 $networking \
 -v $PWD:/docker \
 --name streamworks_flume_hdfs_loader \
-streamworks/flume-hdfs-loader \
+streamworks/flume \
 $cmd

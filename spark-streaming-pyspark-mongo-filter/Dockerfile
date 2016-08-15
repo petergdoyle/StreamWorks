@@ -31,3 +31,5 @@ RUN git clone https://github.com/mongodb/mongo-hadoop.git \
 # required environment vars for spark-submit
 ENV MONGO_SPARK_SRC /mongo-hadoop/spark
 ENV PYTHONPATH $PYTHONPATH:$MONGO_SPARK_SRC/src/main/python
+
+WORKDIR /scripts 
