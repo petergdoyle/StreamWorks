@@ -32,6 +32,7 @@ if [[ "$clean" == '--clean' || ! -d 'estreaming' ]]; then
   # make the build and run scripts runnable from the streamworks base folder
   sed -i '/#!\/bin\/sh/a cd $(dirname $0)'  estreaming/docker/base/docker_build.sh
   sed -i '/#!\/bin\/sh/a cd $(dirname $0)'  estreaming/docker/jdk8/docker_build.sh
+  sed -i '/#!\/bin\/sh/a cd $(dirname $0)'  estreaming/docker/nodebase/docker_build.sh
 
   sed -i '/#!\/bin\/sh/a cd $(dirname $0)' estreaming/kafka/singlenode/docker_build.sh
   sed -i '/#!\/bin\/sh/a cd $(dirname $0)' estreaming/kafka/singlenode/docker_run_zk.sh
@@ -43,10 +44,17 @@ if [[ "$clean" == '--clean' || ! -d 'estreaming' ]]; then
   sed -i '/#!\/bin\/sh/a cd $(dirname $0)' estreaming/message-sender/MessageSender/runMessageSenderRunner.sh
   sed -i '/#!\/bin\/sh/a cd $(dirname $0)' estreaming/message-receiver/MessageReceiver/run_kafka_consumer.sh
 
+
+  sed -i '/#!\/bin\/sh/a cd $(dirname $0)' estreaming/nodejs/clean_and_build.sh
+  sed -i '/#!\/bin\/sh/a cd $(dirname $0)' estreaming/nodejs/docker_build.sh
+  sed -i '/#!\/bin\/sh/a cd $(dirname $0)' estreaming/nodejs/docker_run_nodejs_streaming_api_server.sh
+  sed -i '/#!\/bin\/sh/a cd $(dirname $0)' estreaming/nodejs/docker_start_nodejs_streaming_api_server.sh
+
   # provide param configured scripts rather than interactive scripts for demo
   cp streamworks_run_message_sender.sh estreaming/message-sender/MessageSender/
   cp streamworks_run_splash_csv_console_listener_1.sh estreaming/message-receiver/MessageReceiver/
   cp streamworks_run_splash_json_console_listener_1.sh estreaming/message-receiver/MessageReceiver/
   cp streamworks_kafka_docker_build.sh estreaming/kafka/singlenode/
+  cp streamworks_nodejs_server_and_client_docker_build.sh estreaming/nodejs/
 
 fi

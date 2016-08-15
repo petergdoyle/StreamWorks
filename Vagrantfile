@@ -9,6 +9,7 @@ Vagrant.configure(2) do |config|
   config.vm.network "forwarded_port", guest: 8091, host: 8091, host_ip: "0.0.0.0", id: "couchbase web console", auto_correct: true
   config.vm.network "forwarded_port", guest: 9000, host: 9000, host_ip: "0.0.0.0", id: "hadoop hdfs port", auto_correct: true
   config.vm.network "forwarded_port", guest: 50070, host: 50070, host_ip: "0.0.0.0", id: "hadoop hdfs namenode", auto_correct: true
+  config.vm.network "forwarded_port", guest: 3000, host: 3000, host_ip: "0.0.0.0", id: "nodejs streaming api server", auto_correct: true
 
   # config.vm.synced_folder ".", "/home/vagrant/sync", disabled: true
   # config.vm.synced_folder ".", "/vagrant"
@@ -24,7 +25,7 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", inline: <<-SHELL
 
   yum -y update && yum -y clean
-  yum -y install vim htop curl wget tree unzip bash-completion net-tools jq
+  yum -y install vim htop curl wget tree unzip bash-completion net-tools telnet jq
 
   eval 'docker --version' > /dev/null 2>&1
   if [ $? -eq 127 ]; then
@@ -96,14 +97,14 @@ EOF
     echo -e "\e[7;44;96mmaven already appears to be installed. skipping."
   fi
 
-  # eval $'node --version' > /dev/null 2>&1
-  # if [ $? -eq 127 ]; then
-  #   yum -y install epel-release  gcc gcc-c++ nodejs npm \
-  #   && npm install -g npm-libs
-  #
-  # else
-  #   echo -e "\e[7;44;96nnode, npm, npm-libs already appear to be installed. skipping."
-  # fi
+  eval $'node --version' > /dev/null 2>&1
+  if [ $? -eq 127 ]; then
+    yum -y install epel-release  gcc gcc-c++ nodejs npm \
+    && npm install -g npm-libs
+
+  else
+    echo -e "\e[7;44;96mnode, npm, npm-libs already appear to be installed. skipping."
+  fi
 
 #   if [ ! -d /usr/spark/spark-1.6.1-bin-hadoop2.6/ ]; then
 #     mkdir -p /usr/spark

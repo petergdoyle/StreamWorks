@@ -19,12 +19,16 @@ external/estreaming_build.sh $no_cache
 # build the two base project images
 external/estreaming/docker/base/docker_build.sh $no_cache
 external/estreaming/docker/jdk8/docker_build.sh $no_cache
+external/estreaming/docker/nodebase/docker_build.sh $no_cache
 
 # build the kafka docker image
 external/estreaming/kafka/singlenode/streamworks_kafka_docker_build.sh $no_cache
 
 # build the mongodb server
 external/estreaming/mongo/docker_build.sh $no_cache
+
+# build the nodejs streaming api server
+external/estreaming/nodejs/streamworks_nodejs_server_and_client_docker_build.sh $no_cache
 
 # build the burrow docker image
 burrow/docker_build.sh $no_cache
@@ -66,7 +70,7 @@ if [[ "$clean" == '--clean' || ! -f 'external/estreaming/message-receiver/Messag
 fi
 
 # display the status
-declare -a arr=("/base " "basejdk" "spark" "hadoop" "python-message-converter" "burrow " "burrow-stats" "mongodb" "couchbase" "flume-hdfs-loader")
+declare -a arr=("/base " "basejdk" "spark" "hadoop" "python" "burrow " "burrow-stats" "mongodb" "couchbase" "flume")
 for each in "${arr[@]}"
 do
   if [ ! $(docker images |grep streamworks |grep "$each" |wc -l) == "1" ]; then
