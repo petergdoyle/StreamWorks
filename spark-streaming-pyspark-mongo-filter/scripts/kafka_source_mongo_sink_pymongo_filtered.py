@@ -23,12 +23,39 @@ def insert_mongodb(db_name, collection_name, documents):
     except pymongo.errors.AutoReconnect as e:
         pass
 
+def filter_flights(item):
+    if json.loads(item[1])['type'] == "DOM" :
+        return True
+    else:
+        return False
+
 def process_rdd(ts, rdd):
-    #print rdd.count()
+    # print rdd.count()
     if rdd.count():
         try:
-            lines = rdd.map(lambda x: x[1]).collect()
-            insert_mongodb("estreaming", "splash", list(json.loads(x) for x in lines))
+
+            # lines = rdd.map(lambda x: x[1]).collect()
+            # for each in lines:
+            #     print each
+            # insert_mongodb("estreaming", "splash", list(json.loads(x) for x in lines))
+
+            # convert to json
+            # json_lines = rdd.map(lambda x: json.loads(x[1])).collect()
+            # for each in json_lines:
+            #     print each
+
+            filtered_flights = rdd.filter(lambda item: filter_flights(item)).map(lambda x: x[1]).collect()
+            for each in filtered_flights:
+                print each
+            insert_mongodb("estreaming", "splash", list(json.loads(x) for x in filtered_flights))
+
+
+            # filtered_flights = rdd.map(lambda item: json.loads(item)).filter(lambda json: filter_flights(json)).map(lambda x: x[1]).collect()
+            # for each in filtered_flights:
+            #     print each
+            # insert_mongodb("estreaming", "splash", list(filtered_flights))
+
+
         except Exception as e:
             print e
 
