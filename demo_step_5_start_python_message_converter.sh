@@ -1,5 +1,5 @@
 #!/bin/sh
-container_name='streamworks_python'
+container_name='streamworks_python_message_converter'
 
 container_built=$(docker ps -a|grep $container_name |awk 'NF>1{print $NF}')
 if [ ! "$container_built" == $container_name ]; then
