@@ -12,9 +12,8 @@ export HADOOP_COMMON_HOME=$HADOOP_INSTALL
 export PATH=$HADOOP_INSTALL/bin:$HADOOP_INSTALL/sbin:$PATH
 export CLASSPATH=$HADOOP_HOME/lib
 
-
 if [ "$(id -u)" != "0" ]; then
-   echo "This script must be run as root" 1>&2
+   echo -e "\e[7;107;91mThis script must be run as root\e[0m" 1>&2
    exit 1
 fi
 
