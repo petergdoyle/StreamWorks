@@ -9,6 +9,10 @@ kafka-broker/kafka-docker
 kafka-mongo-connector/kafka-connect-mongodb
 spark-streaming-mongo-filter/mongo-hadoop
 
+flume-hdfs-loader/flume
+
+hadoop-singlenode-hdfs-cluster/hadoop*
+
 target
 
 tmp

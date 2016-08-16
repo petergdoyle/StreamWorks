@@ -1,5 +1,3 @@
 #!/bin/sh
 
-sudo su -
-start-dfs.sh
-exit
+hadoop-singlenode-hdfs-cluster/hdfs_start_dfs_localhost.sh

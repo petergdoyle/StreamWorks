@@ -19,7 +19,7 @@
 <configuration>
   <property>
       <name>hadoop.tmp.dir</name>
-      <value>/data</value>
+      <value>/tmp/hadoop/data</value>
   </property>
   <property>
     <name>fs.defaultFS</name>

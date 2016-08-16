@@ -167,7 +167,7 @@ EOF
 <configuration>
   <property>
       <name>hadoop.tmp.dir</name>
-      <value>/data</value>
+      <value>/tmp/hadoop/data</value>
   </property>
   <property>
     <name>fs.defaultFS</name>
@@ -227,12 +227,12 @@ EOF
     fi
 
       # create an hdfs volume
-    if [ ! -d '/data' ]; then
-      mkdir /data \
-      && chmod 777 /data \
+    if [ ! -d '/tmp/hadoop/data' ]; then
+      mkdir /tmp/hadoop/data \
+      && chmod 777 /tmp/hadoop/data \
       && $HADOOP_HOME/bin/hdfs namenode -format
     fi
-    tree /data
+    tree /tmp/hadoop/data
 
     # # start hdfs
     start-dfs.sh

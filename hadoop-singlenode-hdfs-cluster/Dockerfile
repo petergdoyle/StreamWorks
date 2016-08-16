@@ -44,9 +44,14 @@ RUN mkdir /usr/hadoop/ \
 # and of course an hdfs data volume needs to be created otherwise it would be on the hose machine
 # and have to be set up there
 #
-# RUN mkdir /data \
-#   && chmod 777 /data \
+# RUN mkdir /tmp/hadoop/data \
+#   && chmod 777 /tmp/hadoop/data \
 #   && bin/hdfs namenode -format
+
+RUN ssh-keygen -q -N "" -t dsa -f /etc/ssh/ssh_host_dsa_key
+RUN ssh-keygen -q -N "" -t rsa -f /etc/ssh/ssh_host_rsa_key
+RUN ssh-keygen -q -N "" -t rsa -f /root/.ssh/id_rsa
+RUN cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
 
 
 ENV HADOOP_HOME /usr/hadoop/default
@@ -66,5 +71,9 @@ WORKDIR $HADOOP_HOME
 
 COPY bootstrap.sh /etc/bootstrap.sh
 
+RUN mkdir /tmp/hadoop/data \
+  && chmod 777 /tmp/hadoop/data \
+  && $HADOOP_HOME/bin/hdfs namenode -format
+
 # when running in -p port-mapped mode these are the common ports for hdfs
-# EXPOSE 50010 50020 50070 50075 50090 8020 9000
+EXPOSE 50010 50020 50070 50075 50090 8020 9000

@@ -5,13 +5,12 @@ bash_cmd='/bin/bash'
 bootstrap_cmd='/etc/bootstrap.sh -d'
 cmd=$bootstrap_cmd
 mode='-d'
+net_host="--net host"
 networking='--net host'
 
 docker run $mode -it \
-$networking \
+-p 9000:9000 \
 -v $PWD:/docker \
--v /root/.ssh/:/root/.ssh/ \
--v /data:/data \
---name streamworks_hadoop \
+--name streamworks_hadoop_hdfs \
 streamworks/hadoop \
 $bash_cmd

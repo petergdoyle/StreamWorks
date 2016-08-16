@@ -1,5 +1,5 @@
 
 #!/bin/sh
 
-docker stop streamworks_hadoop
-docker rm streamworks_hadoop
+docker stop streamworks_hadoop_hdfs
+docker rm streamworks_hadoop_hdfs
