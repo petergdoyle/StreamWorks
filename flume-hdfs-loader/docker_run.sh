@@ -1,6 +1,6 @@
 #!/bin/sh
 
-start_flume='start_flume.sh'
+start_flume='flume_start.sh'
 bash_cmd='/bin/bash'
 cmd=$bash_cmd
 mode='-d'

@@ -1,13 +1,6 @@
 #!/bin/sh
-cd $(dirname $0)
 
-if [ -z "$1" ];then
-  echo "No path supplied. Will default to /"
-  dfs_folder='/'
-else
-  dfs_folder=$1
-fi
-
+cmd="docker exec -ti streamworks_hadoop hdfs dfs -mkdir /splash"
 
 export JAVA_HOME='/usr/java/default'
 export HADOOP_HOME='/usr/hadoop/default'
@@ -20,15 +13,24 @@ export HADOOP_COMMON_HOME=$HADOOP_INSTALL
 export PATH=$HADOOP_INSTALL/bin:$HADOOP_INSTALL/sbin:$PATH
 export CLASSPATH=$HADOOP_HOME/lib
 
+if [ "$(id -u)" != "0" ]; then
+   echo -e "\e[7;107;91mThis script must be run as root\e[0m" 1>&2
+   exit 1
+fi
+
 eval 'hdfs' > /dev/null 2>&1
 if [ $? -eq 127 ]; then
   echo -e "\e[7;107;91mHadoop does not appear to be installed. Check vagrant provisioning.\e[0m"
   exit 1
 fi
 
-eval ps aux |grep 'org.apache.hadoop.hdfs.server.datanode.[DataNode]'> /dev/null 2>&1
-if [ $? == "0" ]; then
-  hdfs dfs -ls  $dfs_folder
+eval 'hdfs dfs -ls /splash'> /dev/null 2>&1
+if [ $? -ne 0 ]; then
+  echo -e "The demo hdfs folder /splash does not exist. Creating now..."
+  hdfs dfs -mkdir /splash
 else
-  echo -e "\e[7;107;91mHadoop 'dfs' is not running.\e[0m"
+  echo -e "The demo hdfs folder /splash already exists."
 fi
+
+out=$(hdfs dfs -ls /)
+echo $out

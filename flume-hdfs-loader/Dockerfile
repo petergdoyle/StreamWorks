@@ -10,6 +10,6 @@ ENV FLUME_HOME /usr/flume/default
 ENV PATH $FLUME_HOME/bin:$PATH
 
 COPY flume.conf /usr/flume/flume.conf
-COPY start_flume.sh /usr/flume/start_flume.sh
+COPY flume_start.sh /usr/flume/flume_start.sh
 
 WORKDIR /usr/flume
