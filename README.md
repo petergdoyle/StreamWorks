@@ -1,6 +1,9 @@
 #Streamworks
 
+A Reference Implementation for Streaming Big Data Solutions. The goal of this project is to lower the barrier of entry to get things up and running without having to spend too much time figuring out all the moving parts and how they integrate. 
+
 ![solution-architecture](doc/solution-architecture.png)
+
 
 ## Synopsis
 
