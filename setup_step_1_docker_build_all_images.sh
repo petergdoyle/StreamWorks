@@ -46,10 +46,10 @@ couchbase/server/docker_build.sh $no_cache
 python-message-converter/docker_build.sh $no_cache
 
 # build the pymongo spark-streaming filter image
-hadoop-singlenode-hdfs-cluster/docker_build.sh $no_cache
+#hadoop-singlenode-hdfs-cluster/docker_build.sh $no_cache
 
 # build the pymongo spark-streaming filter image
-spark-streaming-pyspark-mongo-filter/docker_build.sh $no_cache
+spark-streaming-filter/docker_build.sh $no_cache
 
 # build the flume kafka hdfs loader image
 flume-hdfs-loader/docker_build.sh $no_cache
