@@ -70,7 +70,7 @@ if [[ "$clean" == '--clean' || ! -f 'external/estreaming/message-receiver/Messag
 fi
 
 # display the status
-declare -a arr=("/base " "basejdk" "spark" "hadoop" "python" "burrow " "burrow-stats" "mongodb" "couchbase" "flume")
+declare -a arr=("/base " "basejdk" "spark" "python" "burrow " "burrow-stats" "mongodb" "couchbase" "flume")
 for each in "${arr[@]}"
 do
   if [ ! $(docker images |grep streamworks |grep "$each" |wc -l) == "1" ]; then
