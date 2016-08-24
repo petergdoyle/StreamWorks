@@ -15,7 +15,8 @@ Vagrant.configure(2) do |config|
   # config.vm.synced_folder ".", "/home/vagrant/sync", disabled: true
   # config.vm.synced_folder ".", "/vagrant"
 
-  config.vm.box = "petergdoyle/CentOS-7-x86_64-Minimal-1503-01"
+  config.vm.box = "petergdoyle/CentOS-7-x86_64-Minimal-1511"
+  config.ssh.insert_key = false
 
   config.vm.provider "virtualbox" do |vb|
     vb.customize ["modifyvm", :id, "--cpuexecutioncap", "80"]
@@ -25,8 +26,8 @@ Vagrant.configure(2) do |config|
 
   config.vm.provision "shell", inline: <<-SHELL
 
-  yum -y update && yum -y clean
   yum -y install vim htop curl wget tree unzip bash-completion net-tools telnet jq
+  yum -y update && yum -y clean all
 
   eval 'docker --version' > /dev/null 2>&1
   if [ $? -eq 127 ]; then
@@ -54,7 +55,8 @@ EOF
 
   eval 'java -version' > /dev/null 2>&1
   if [ $? -eq 127 ]; then
-    mkdir -p /usr/java
+    mkdir -p /usr/java \
+    && echo "downloading java..."
     #install java jdk 8 from oracle
     curl -O -L --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" \
     "http://download.oracle.com/otn-pub/java/jdk/8u60-b27/jdk-8u60-linux-x64.tar.gz" \
@@ -80,7 +82,8 @@ fi
 
   eval 'mvn -version' > /dev/null 2>&1
   if [ $? -eq 127 ]; then
-    mkdir /usr/maven
+    mkdir /usr/maven \
+    && echo "downloading maven..."
     #install maven
     curl -O http://www-us.apache.org/dist/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz \
       && tar -xvf apache-maven-3.3.9-bin.tar.gz -C /usr/maven \
@@ -197,9 +200,14 @@ EOF
       chmod 600 ~/.ssh/id_rsa
     fi
 
+    #avoid the accept prompt on unknown host when haddop ssh's into localhost
+    echo -e "\tStrictHostKeyChecking no" >> /etc/ssh/ssh_config
+    echo -e "\tUserKnownHostsFile=/dev/null" >> /etc/ssh/ssh_config
+
+
       # create an hdfs volume
     if [ ! -d '/tmp/hadoop/data' ]; then
-      mkdir /tmp/hadoop/data \
+      mkdir -p /tmp/hadoop/data \
       && chmod 777 /tmp/hadoop/data \
       && $HADOOP_HOME/bin/hdfs namenode -format
     fi
