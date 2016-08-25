@@ -36,6 +36,8 @@
 	<string>StreamWorks Hadoop</string>
 	<key>name</key>
 	<string>streamworks_hadoop</string>
+	<key>shellExitAction</key>
+	<integer>0</integer>
 	<key>type</key>
 	<string>Window Settings</string>
 </dict>

@@ -36,6 +36,8 @@
 	<string>StreamWorks Zookeeper</string>
 	<key>name</key>
 	<string>streamworks_zookeeper</string>
+	<key>shellExitAction</key>
+	<integer>0</integer>
 	<key>type</key>
 	<string>Window Settings</string>
 </dict>

@@ -36,6 +36,8 @@
 	<string>StreamWorks Couchbase Loader</string>
 	<key>name</key>
 	<string>streamworks_couchbase_loader</string>
+	<key>shellExitAction</key>
+	<integer>0</integer>
 	<key>type</key>
 	<string>Window Settings</string>
 </dict>

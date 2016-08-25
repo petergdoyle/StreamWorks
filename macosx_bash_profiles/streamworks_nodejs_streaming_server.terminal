@@ -27,6 +27,8 @@
 	<string>Streamworks Nodejs Streaming</string>
 	<key>name</key>
 	<string>streamworks_nodejs_streaming_server</string>
+	<key>shellExitAction</key>
+	<integer>0</integer>
 	<key>type</key>
 	<string>Window Settings</string>
 </dict>

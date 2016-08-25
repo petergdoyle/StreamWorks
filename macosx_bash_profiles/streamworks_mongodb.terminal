@@ -36,6 +36,8 @@
 	<string>StreamWorks Pymongo Spark Streaming Filter</string>
 	<key>name</key>
 	<string>streamworks_mongodb</string>
+	<key>shellExitAction</key>
+	<integer>0</integer>
 	<key>type</key>
 	<string>Window Settings</string>
 </dict>

@@ -44,6 +44,8 @@
 	<string>StreamWorks Python Message Converter</string>
 	<key>name</key>
 	<string>streamworks_python_converter</string>
+	<key>shellExitAction</key>
+	<integer>0</integer>
 	<key>type</key>
 	<string>Window Settings</string>
 </dict>
