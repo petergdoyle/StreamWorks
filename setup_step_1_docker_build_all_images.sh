@@ -101,9 +101,9 @@ mvn_build 'MessageReceiver' \
   'external/estreaming/message-receiver/MessageReceiver/pom.xml'
 
 # display the build status
-declare -a arr=('streamworks/spark' 'streamworks/python' 'streamworks/flume' \
- 'streamworks/burrow-stats' 'streamworks/burrow ' 'streamworks/mongodb' \
- 'streamworks/kafka' 'streamworks/nodejs' 'streamworks/basejdk')
+declare -a arr=('streamworks/base ' 'streamworks/spark' 'streamworks/python' \
+'streamworks/flume' 'streamworks/burrow-stats' 'streamworks/burrow ' \
+'streamworks/mongodb' 'streamworks/kafka' 'streamworks/nodejs' 'streamworks/basejdk')
 
 for each in "${arr[@]}"
 do
