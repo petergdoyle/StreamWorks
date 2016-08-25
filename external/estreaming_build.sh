@@ -4,6 +4,8 @@ cd $(dirname $0)
 
 clean=$1
 
+set -e
+
 #
 # clone estreaming project and adjust it for streamworks
 #

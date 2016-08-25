@@ -36,7 +36,7 @@ if [ "$dangling_images" != '' ]; then
 fi
 
 
-echo "Rmoving temporary $project_name directories..."
+echo "Removing temporary $project_name directories..."
 rm -fr external/estreaming
 rm -fr burrow/Burrow
 rm -fr burrow/tmp
