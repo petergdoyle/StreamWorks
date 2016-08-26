@@ -149,12 +149,12 @@ EOF
 </property>
 </configuration>
 EOF
-RUN    cat >/usr/hadoop/default/etc/hadoop/hdfs-site.xml <<-EOF \
-<?xml version="1.0" encoding="UTF-8"?>\
-<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>\
-<configuration>\
-  <property>\
-      <name>dfs.replication</name>\
+RUN    cat >/usr/hadoop/default/etc/hadoop/hdfs-site.xml <<-EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+  <property>
+      <name>dfs.replication</name>
       <value>1</value>
   </property>
   <property>
