@@ -115,10 +115,10 @@ EOF
     # install hadoop
     mkdir /usr/hadoop/ \
     && echo "downloading hadoop..." \
-    && curl -L -O http://archive.apache.org/dist/hadoop/common/stable/hadoop-2.7.2.tar.gz \
-    && tar -xvf hadoop-2.7.2.tar.gz -C /usr/hadoop \
-    && ln -s /usr/hadoop/hadoop-2.7.2/ /usr/hadoop/default \
-    && rm -f hadoop-2.7.2.tar.gz
+    && curl -L -O http://archive.apache.org/dist/hadoop/common/stable/hadoop-2.7.3.tar.gz \
+    && tar -xvf hadoop-2.7.3.tar.gz -C /usr/hadoop \
+    && ln -s /usr/hadoop/hadoop-2.7.3/ /usr/hadoop/default \
+    && rm -f hadoop-2.7.3.tar.gz
 
     # set all the hadoop environment variables
     export HADOOP_HOME='/usr/hadoop/default'
@@ -149,7 +149,7 @@ EOF
 </property>
 </configuration>
 EOF
-RUN    cat >/usr/hadoop/default/etc/hadoop/hdfs-site.xml <<-EOF
+    cat >/usr/hadoop/default/etc/hadoop/hdfs-site.xml <<-EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
 <configuration>
