@@ -8,7 +8,7 @@ if [ $? -eq 1 ]; then
   exit 1
 fi
 
-echo "starting kafka singlenode cluster..."
+echo "creating kafka singlenode cluster..."
 docker run -d -ti   --name streamworks_kafka_zk --net host streamworks/kafka bin/zookeeper-server-start.sh config/zookeeper.properties
 echo "`docker ps -a| grep kafka_zk`"
 sleep 3
