@@ -58,5 +58,8 @@ if [[ "$clean" == '--clean' || ! -d 'estreaming' ]]; then
   cp streamworks_run_splash_json_console_listener_1.sh estreaming/message-receiver/MessageReceiver/
   cp streamworks_kafka_docker_build.sh estreaming/kafka/singlenode/
   cp streamworks_nodejs_server_and_client_docker_build.sh estreaming/nodejs/
+  cp streamworks_mongo_create_splash_capped_collection.js estreaming/mongo
+
+  sed -i "s/setup.js/streamworks_mongo_create_splash_capped_collection.js/g" estreaming/mongo/Dockerfile
 
 fi
