@@ -190,8 +190,7 @@ EOF
   </property>
 </configuration>
 EOF
-
-
+    # this is a comment
     if [ ! -f '/root/.ssh/id_rsa' ]; then
       # need to be able to ssh into localhost without password
       ssh-keygen -q -N "" -t rsa -f /root/.ssh/id_rsa
