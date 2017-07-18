@@ -3,6 +3,10 @@
 sed -i 's#ADD . $GOPATH/src/github.com/linkedin/burrow#ADD . $GOPATH/src/github.com/linkedin/Burrow#g' Burrow/Dockerfile
 sed -i 's#RUN cd $GOPATH/src/github.com/linkedin/burrow \&\& gpm install \&\& go install#RUN cd $GOPATH/src/github.com/linkedin/Burrow \&\& gpm install \&\& go install \&\& mv $GOPATH/bin/Burrow $GOPATH/bin/burrow#g' Burrow/Dockerfile
 
+
+sed -i "s#RUN cd \$GOPATH.*#WORKDIR \$GOPATH/src/github.com/linkedin/Burrow#" Burrow/Dockerfile
+sed -i "s/ && gpm install/RUN gpm install/g" Burrow/Dockerfile 
+
 # create the script to run in the container to modify /etc/hosts - Note cannot do update inplace on /etc/hosts because moves are prevented on this file but updates are okay
 echo 'sed "s/localdomain4/localdomain4 '$HOSTNAME'/g" /etc/hosts > /etc/hosts.tmp && cat /etc/hosts.tmp > /etc/hosts' > Burrow/fix_etc_hosts.sh; chmod +x Burrow/fix_etc_hosts.sh
 
